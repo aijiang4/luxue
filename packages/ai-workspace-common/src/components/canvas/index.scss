@@ -1,0 +1,20 @@
+.moveable-control-hidden {
+  .moveable-control {
+    background: transparent !important;
+    border-color: transparent !important;
+  }
+  .moveable-origin {
+    background: transparent !important;
+    border-color: transparent !important;
+  }
+}
+
+.moveable-control-show {
+  .moveable-control {
+    background: #00968f !important;
+  }
+  .moveable-origin {
+    background: transparent !important;
+    border-color: transparent !important;
+  }
+}

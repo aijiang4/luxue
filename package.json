@@ -1,0 +1,59 @@
+{
+  "name": "refly-monorepo",
+  "private": true,
+  "engines": {
+    "pnpm": ">=8"
+  },
+  "scripts": {
+    "commit": "cz",
+    "dev": "turbo run dev",
+    "start": "turbo run start",
+    "build": "turbo run build",
+    "build:api": "turbo run build --filter=@refly/api",
+    "build:web": "turbo run build --filter=@refly/web",
+    "build:extension": "turbo run build --filter=@refly/extension",
+    "copy-env": "turbo run copy-env",
+    "codegen": "turbo run codegen",
+    "clean": "turbo run clean",
+    "cy:open": "cypress open",
+    "cy:install": "cypress install",
+    "lint": "biome lint .",
+    "lint:fix": "biome lint . --write",
+    "format": "biome format .",
+    "format:fix": "biome format . --write",
+    "check": "biome check .",
+    "check:fix": "biome check . --write",
+    "test": "pnpm -r --if-present test",
+    "test:unit": "pnpm -r --if-present test:unit",
+    "test:integration": "pnpm -r --if-present test:integration",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.0",
+    "@types/node": "20.14.8",
+    "commitizen": "^4.2.4",
+    "cypress": "14.0.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
+    "ncp": "^2.0.0",
+    "rimraf": "^5.0.10",
+    "turbo": "^2.1.2",
+    "typescript": "5.3.3",
+    "vitest": "^2.1.0"
+  },
+  "packageManager": "pnpm@8.15.8",
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": ["biome check --write"],
+    "*.json": ["biome format --write"]
+  },
+  "dependencies": {
+    "@types/lodash-es": "^4.17.12",
+    "lodash-es": "^4.17.21"
+  }
+}

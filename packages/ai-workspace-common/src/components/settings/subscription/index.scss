@@ -1,0 +1,197 @@
+.subscription {
+  padding: 8px 12px;
+  width: 680px;
+  box-sizing: border-box;
+  overflow: auto;
+
+  &-plan {
+    padding: 20px 24px 40px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(to right, #00968f, #00c4b8);
+    border-radius: 12px;
+    box-shadow: rgba(0, 0, 0, 0.06) 5px 7px 12px 0px;
+    color: #fff;
+    &.free {
+      background: linear-gradient(113deg, rgba(255, 255, 255, 0.51) 3.51%, rgba(255, 255, 255, 0) 111.71%),
+        rgb(234, 236, 240);
+      .subscription-plan-info-title {
+        color: #666;
+      }
+      .subscription-plan-info-status {
+        color: #333;
+      }
+    }
+
+    &-info {
+      &-title {
+        font-size: 12px;
+        line-height: 16px;
+        color: #fff;
+      }
+
+      &-status {
+        display: flex;
+        align-items: center;
+        font-size: 20px;
+        line-height: 40px;
+        font-weight: 600;
+        color: #fff;
+        .interval {
+          margin-left: 10px;
+          font-size: 10px;
+          height: 18px;
+          line-height: 18px;
+          border-radius: 4px;
+        }
+      }
+    }
+  }
+
+  &-usage {
+    margin-top: -20px;
+    padding: 20px 24px;
+    border: 1px solid transparent;
+    border-color: #fff;
+    border-top-color: transparent;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: rgba(0, 0, 0, 0.06) 5px 7px 12px 0px;
+
+    &-item {
+      margin-bottom: 28px;
+      &-title {
+        .title {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          color: rgb(71, 84, 103);
+
+          .title-left {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            line-height: 20px;
+            font-weight: 700;
+          }
+
+          .title-right {
+            font-size: 13px;
+            line-height: 16px;
+            color: #666;
+            text-align: right;
+          }
+
+          .info-icon {
+            margin-left: 4px;
+            cursor: pointer;
+          }
+        }
+
+        .value {
+          font-size: 13px;
+          line-height: 16px;
+          color: #666;
+          .value-used {
+            color: #f00;
+          }
+        }
+      }
+
+      &-progress {
+        margin-top: 8px;
+      }
+    }
+
+    .file-storage-usage-bar {
+      width: 100%;
+
+      &-title {
+        margin-bottom: 8px;
+        color: rgb(71, 84, 103);
+        display: flex;
+        justify-content: space-between;
+
+        .title-left {
+          display: flex;
+          align-items: center;
+          font-size: 14px;
+          line-height: 20px;
+          font-weight: 700;
+        }
+
+        .title-right {
+          font-size: 13px;
+          line-height: 16px;
+          color: #666;
+        }
+
+        .info-icon {
+          margin-left: 4px;
+          cursor: pointer;
+        }
+      }
+
+      &-progress {
+        height: 10px;
+        background: #f2f3f5;
+        border-radius: 12px;
+        overflow: hidden;
+        display: flex;
+      }
+
+      &-category {
+        display: flex;
+        align-items: center;
+
+        &-dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          margin-right: 6px;
+        }
+
+        &-name {
+          font-size: 12px;
+          line-height: 16px;
+          color: #555;
+        }
+      }
+    }
+  }
+
+  &-management-wrapper {
+    margin-top: 20px;
+  }
+
+  &-management {
+    height: 48px;
+    padding: 0 24px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #666;
+    font-weight: 500;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+    cursor: pointer;
+
+    &-left {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+    }
+    &-right {
+      font-size: 16px;
+      color: #666;
+    }
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+      .subscription-management-right {
+        color: #00968f;
+      }
+    }
+  }
+}

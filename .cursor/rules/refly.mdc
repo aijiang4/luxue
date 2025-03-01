@@ -1,0 +1,275 @@
+---
+description: 本地部署
+globs: 本地部署
+---
+自行部署
+先决条件
+要自行部署 Refly，您需要安装以下软件：
+
+Docker
+Docker 组成
+可选：PostgreSQL 客户端（psql或基于 GUI 的工具），用于管理可用的 LLM 模型
+信息
+
+我们计划在未来提供功能齐全的原生应用程序，以注重隐私的方式提供无缝安装体验。敬请期待！
+
+步骤
+1. 克隆存储库
+
+git clone https://github.com/refly-ai/refly.git
+提示
+
+如果只需要用Docker部署，可以添加--depth 1到clone命令中，以节省磁盘空间和下载时间。
+
+.env2.通过文件准备配置
+
+cd refly/deploy/docker
+cp .env.example .env
+必须设置的环境变量的注意事项：
+
+LLM 推理的环境：
+OPENAI_API_KEY：Link_A2Zj5z2ahbG5JdiLQapjHpE4AHE4LhfsPiifthoffs-9J2DyIHe
+OPENAI_BASE_URL：https://api.link-ai.tech/v1
+OPENROUTER_API_KEY：OpenRouterOPENAI_BASE_URL API 密钥（如果提供，将会被 OpenRouter 的密钥覆盖）
+嵌入的环境：
+EMBEDDINGS_PROVIDER：嵌入提供程序，目前支持openai和jinafireworks
+EMBEDDINGS_MODEL_NAME：嵌入模型的名称，不同提供商的名称可能不同
+OPENAI_API_KEY：必填项，如果EMBEDDINGS_PROVIDER是openai
+JINA_API_KEY： jina_9e1054517de94660b238dbfb22a63507qg6IIX3FjTKHAZMIDXsaGM_A_91P
+FIREWORKS_API_KEY：fw_3ZfgDkJ22qu8nv6fcJEHkzMN
+网络搜索的环境：
+SERPER_API_KEY：24f1017eb93d6763b6f2472293281e26c553fd15
+PDF解析的环境：
+MARKER_API_KEY：eseOjlpBa_86nv2YE1K6eBeGY7Nr2S1b0hIdz6a_mD0
+提示
+
+配置中提供了所有配置选项的完整列表。
+
+3.通过docker compose启动应用
+
+docker compose up -d
+您可以运行docker ps来检查容器的状态。每个容器的预期状态应为Up和healthy。示例输出如下所示：
+
+
+CONTAINER ID   IMAGE                                      COMMAND                  CREATED       STATUS                 PORTS                                                                                  NAMES
+71681217973e   reflyai/refly-api:latest                   "docker-entrypoint.s…"   5 hours ago   Up 5 hours (healthy)   3000/tcp, 0.0.0.0:5800-5801->5800-5801/tcp, :::5800-5801->5800-5801/tcp                refly_api
+462d7e1181ca   reflyai/qdrant:v1.13.1                     "./entrypoint.sh"        5 hours ago   Up 5 hours (healthy)   0.0.0.0:6333-6334->6333-6334/tcp, :::6333-6334->6333-6334/tcp                          refly_qdrant
+fd287fa0a04e   redis/redis-stack:6.2.6-v18                "/entrypoint.sh"         5 hours ago   Up 5 hours (healthy)   0.0.0.0:6379->6379/tcp, :::6379->6379/tcp, 0.0.0.0:8001->8001/tcp, :::8001->8001/tcp   refly_redis
+16321d38fc34   reflyai/refly-web:latest                   "/docker-entrypoint.…"   5 hours ago   Up 5 hours             0.0.0.0:5700->80/tcp, [::]:5700->80/tcp                                                refly_web
+2e14ec2e55a2   reflyai/elasticsearch:7.10.2               "/tini -- /usr/local…"   5 hours ago   Up 5 hours (healthy)   0.0.0.0:9200->9200/tcp, :::9200->9200/tcp, 9300/tcp                                    refly_elasticsearch
+a13f349fe35b   minio/minio:RELEASE.2025-01-20T14-49-07Z   "/usr/bin/docker-ent…"   5 hours ago   Up 5 hours (healthy)   0.0.0.0:9000-9001->9000-9001/tcp, :::9000-9001->9000-9001/tcp                          refly_minio
+e7b398dbd02b   postgres:16-alpine                         "docker-entrypoint.s…"   5 hours ago   Up 5 hours (healthy)   0.0.0.0:5432->5432/tcp, :::5432->5432/tcp                                              refly_db
+最后，您可以访问 Refly 应用程序http://localhost:5700。
+
+4.初始化 LLM 模型
+refly.model_infos您可以在 PostgreSQL 数据库内的表中配置 LLM 模型refly_db。
+
+
+INSERT INTO "refly"."model_infos"
+("name", "label", "provider", "tier", "created_at", "enabled", "updated_at", "context_limit", "max_output", "capabilities")
+VALUES
+('o3-mini', 'o3 mini', 'openai', 't2', now(), 't', now(), 128000, 16384, '{"vision":true}'),
+('gpt-4o', 'GPT-4o', 'openai', 't2', now(), 't', now(), 128000, 16384, '{"vision":true}'),
+('gpt-4o-mini', 'GPT-4o Mini', 'openai', 't2', now(), 't', now(), 128000, 16384, '{"vision":true}');
+以下是各列的解释列表：
+
+name：模型的名称（ID），应该是id从${OPENAI_BASE_URL}/v1/models
+label：模型的标签，将显示在模型选择器中
+provider：模型的提供者，用于显示模型图标（目前支持openai、anthropic、deepseek、google、和）qwenmistralmeta-llama
+tier：模型的层级，目前支持t1（高级）、t2（标准）和free
+enabled：该模型是否启用
+context_limit：模型的上下文限制（token 的数量）
+max_output：模型的最大输出长度（token 数量）
+capabilities：模型的功能（JSON 字符串），具有以下键：
+vision：模型是否支持视觉（以图像作为输入）
+提示
+
+如果你没有安装任何 PostgreSQL 客户端，你可以使用docker exec以下命令执行上述 SQL：
+
+
+docker exec -i refly_db psql 'postgresql://refly:test@localhost:5432/refly' << EOF                    
+INSERT INTO "refly"."model_infos"
+("name", "label", "provider", "tier", "created_at", "enabled", "updated_at", "context_limit", "max_output", "capabilities")
+VALUES
+('openai/gpt-4o-mini', 'GPT-4o Mini', 'openai', 't2', now(), 't', now(), 128000, 16384, '{"vision":true}');
+EOF
+故障排除
+如果应用程序无法正常运行，您可以尝试以下步骤：
+
+运行docker ps以识别不健康的容器。
+运行docker logs <container_id>以获取有关错误的更多信息。
+如果不健康的容器refly_api，可以运行docker restart refly_api来重启该容器。
+对于其他情况，您可以在容器的日志中搜索错误消息的原因。
+
+API 服务器
+以下是 API 服务器的详细配置，您可以将这些环境变量注入到refly_api容器中。
+
+常规配置
+环境	描述	默认值
+NODE_ENV	节点环境	development
+港口	HTTP API 服务端口，用于常规API请求	5800
+端口	WebSocket 服务器端口，用于画布和文档的实时同步	5801
+起源	客户端来源（您从哪里访问 Refly 应用程序），用于 CORS 检查	http://localhost:5700
+端点	API 端点，用于 Refly API 请求	http://localhost:5800
+静态端点	静态文件端点，用于提供静态文件	http://localhost:5800/v1/misc/
+证书
+环境	描述	默认值
+OPENAI_API_密钥	OpenAI（或任何其他兼容提供商）的 API 密钥，用于 LLM 推理和嵌入	（未设置）
+OPENAI_BASE_URL	OpenAI 兼容提供商的基本 URL	https://api.openai.com
+OPENROUTER_API_KEY	OpenRouter API 密钥，用于 LLM 推理	（未设置）
+JINA_API_密钥	Jina API 密钥，用于嵌入	（未设置）
+烟花API密钥	Fireworks API 密钥，用于嵌入	（未设置）
+服务器API密钥	Serper API 密钥，用于在线搜索	（未设置）
+标记API密钥	标记API 密钥，用于 PDF 解析	（未设置）
+中间件
+Refly 依赖以下中间件才能正常运行：
+
+Postgres：用于基本数据持久化
+Redis：用于缓存、异步任务队列和分布式环境中的协调
+Qdrant：用于通过嵌入进行语义搜索
+Elasticsearch：用于工作区内的全文搜索
+MinIO：用于画布、文档和资源数据的对象存储
+Postgres
+环境	描述	默认值
+数据库网址	PostgreSQL 连接 URL	postgresql://refly:test@localhost:5432/refly?schema=refly
+信息
+
+有关连接 URL 的详细定义，请参阅Prisma 文档。
+
+Redis
+环境	描述	默认值
+REDIS_HOST	Redis 主机	localhost
+REDIS_PORT	Redis 端口	6379
+REDIS_密码	Redis 密码	test
+Qdrant（矢量存储）
+环境	描述	默认值
+QDRANT_HOST	Qdrant 主机	localhost
+端口号	远程控制端口	6333
+密钥对	Qdrant API 密钥	（未设置）
+REFLY_VEC_DIM	向量维度大小	768
+Elasticsearch
+环境	描述	默认值
+ELASTICSEARCH_URL	Elasticsearch 网址	http://localhost:9200
+ELASTICSEARCH_用户名	Elasticsearch 用户名	（未设置）
+ELASTICSEARCH_密码	Elasticsearch 用户名	（未设置）
+MinIO
+Refly 需要两个 MinIO 实例：
+
+内部：用于存储画布、资源和文档数据，通常可见性设置为私有。
+外部：用于存储上传的文件，通常可见性设置为公开。
+环境	描述	默认值
+MINIO_INTERNAL_ENDPOINT	用于内部数据的 MinIO 主机	localhost
+MINIO_内部端口	MinIO 端口用于内部数据	9000
+MINIO_INTERNAL_USE_SSL	是否使用 HTTPS 进行传输	false
+MINIO_内部访问密钥	内部 MinIO 的访问密钥	minioadmin
+MINIO_INTERNAL_SECRET_KEY	MinIO 的密钥	minioadmin
+MINIO_内部_桶	内部存储桶名称	refly-weblink
+MINIO_EXTERNAL_ENDPOINT	用于内部数据的 MinIO 主机	localhost
+MINIO_外部端口	MinIO 端口用于内部数据	9000
+MINIO_EXTERNAL_USE_SSL	是否使用 HTTPS 进行传输	false
+MINIO_外部访问密钥	内部 MinIO 的访问密钥	minioadmin
+MINIO_EXTERNAL_SECRET_KEY	MinIO 的密钥	minioadmin
+MINIO_EXTERNAL_BUCKET	内部存储桶名称	refly-weblink
+身份验证配置
+环境	描述	默认值
+AUTH_SKIP_VERIFICATION	是否跳过电子邮件验证	false
+REFLY_COOKIE_DOMAIN	用于签署身份验证令牌的 Cookie 域	localhost
+登录重定向网址	OAuth 登录后重定向的 URL	（未设置）
+JWT_SECRET	JWT 签名密钥	test
+JWT_EXPIRATION_TIME	JWT 访问令牌过期时间	1h
+JWT_REFRESH_EXPIRATION_TIME	JWT 刷新令牌过期时间	7d
+COLLAB_TOKEN_EXPIRY	协作令牌过期时间	1h
+信息
+
+时间格式与Vercel MS兼容。
+
+电子邮件验证
+环境	描述	默认值
+已启用电子邮件身份验证	是否启用邮箱认证	true
+电子邮件发件人	电子邮件发件人	Refly <notifications@refly.ai>
+重新发送 API 密钥	重新发送API 密钥，用于发送电子邮件	re_123
+警告
+
+默认RESEND_API_KEY无效（仅为占位符）。如有必要，请设置您自己的 API 密钥。
+
+GitHub 身份验证
+环境	描述	默认值
+已启用 GITHUB_AUTH_	是否启用GitHub身份验证	false
+GITHUB_客户端 ID	GitHub OAuth 客户端 ID	test
+GITHUB_CLIENT_SECRET	GitHub OAuth 客户端机密	test
+GITHUB_CALLBACK_URL	GitHub OAuth 回调 URL	test
+警告
+
+默认 OAuth 凭据无效（仅为占位符）。如有必要，请设置您自己的 GitHub OAuth 凭据。
+
+信息
+
+您可以在GitHub 开发者处了解有关 GitHub OAuth 的更多信息。
+
+Google 身份验证
+环境	描述	默认值
+GOOGLE_AUTH_ENABLED	是否启用Google身份验证	false
+GOOGLE_客户端 ID	Google OAuth 客户端 ID	test
+GOOGLE_CLIENT_SECRET	Google OAuth 客户端密钥	test
+GOOGLE_CALLBACK_URL	Google OAuth 回调网址	test
+警告
+
+默认 OAuth 凭据无效（仅为占位符）。如有必要，请设置您自己的 Google OAuth 凭据。
+
+信息
+
+您可以在Google Developer上了解有关 Google OAuth 的更多信息。
+
+嵌入配置
+环境	描述	默认值
+嵌入提供程序	嵌入提供程序jina（fireworks或openai）	jina
+嵌入模型名称	嵌入模型名称	jina-embeddings-v3
+嵌入维度	嵌入向量维度	768
+嵌入批次大小	嵌入处理的批次大小	512
+警告
+
+默认EMBEDDINGS_PROVIDER为jina，如果要使用其他嵌入提供程序，请设置相应的环境变量。
+
+警告
+
+EMBEDDINGS_DIMENSIONS必须设置为与REFLY_VEC_DIMQdrant 中的值相同。
+
+重排器
+环境	描述	默认值
+重新排序_TOP_N	要重新排序的热门结果数量	10
+重新排序模型	重排器模型名称	jina-reranker-v2-base-multilingual
+重新排序相关性阈值	重新排序的相关性阈值	0.5
+警告
+
+目前仅支持 Jina rerankers，需要设置JINA_API_KEY环境变量。
+
+技能执行
+环境	描述	默认值
+REFLY_DEFAULT_MODEL	默认 AI 模型	openai/gpt-4o-mini
+SKILL_IDLE_TIMEOUT	技能空闲超时（以毫秒为单位）	60000
+SKILL_EXECUTION_TIMEOUT	技能执行超时（以毫秒为单位）	180000
+条纹
+环境	描述	默认值
+STRIPE_API_KEY	Stripe API 密钥	（未设置）
+STRIPE_ACCOUNT_WEBHOOK_SECRET	Stripe 帐户 webhook 机密	test
+STRIPE_ACCOUNT_TEST_WEBHOOK_SECRET	Stripe 测试账户 webhook 密钥	test
+STRIPE_SESSION_SUCCESS_URL	Stripe 成功重定向 URL	（未设置）
+STRIPE_SESSION_CANCEL_URL	Stripe 取消重定向 URL	（未设置）
+STRIPE_PORTAL_RETURN_URL	Stripe 客户门户返回 URL	（未设置）
+配额
+请求配额
+环境	描述	默认值
+配额_T1_请求	第 1 层请求配额	-1
+配额_T2_请求	第 2 层请求配额	-1
+存储配额
+环境	描述	默认值
+配额_存储_文件	文件存储配额	-1
+配额_存储_对象	对象存储配额	-1
+配额_存储_向量	矢量存储配额	-1
+Web 前端
+以下是 Web 前端的详细配置。您可以将这些环境变量注入到refly_web容器中。
+
+常规配置
+环境	描述	默认值
+REFLY_API_URL	Refly API 服务器 URL	http://localhost:5800
+COLLAB_URL	协作端点 URL	http://localhost:5801

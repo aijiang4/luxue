@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>万峰白板</title>
+    <meta
+      name="description"
+      content="万峰白板是一个由多线程对话、知识集成、上下文记忆、智能搜索和所见即所得 AI 编辑器驱动的自由形式画布创作平台，轻松将想法转化为优质内容。" />
+    <style>
+      @font-face {
+        font-family: "Alibaba PuHuiTi";
+        font-weight: bold;
+        font-display: swap;
+        src:
+          url("https://static.refly.ai/landing/Alibaba-PuHuiTi-Bold.woff2")
+            format("woff2"),
+          url("https://static.refly.ai/landing/Alibaba-PuHuiTi-Bold.ttf")
+            format("truetype");
+      }
+
+      @font-face {
+        font-family: "Alibaba PuHuiTi";
+        font-weight: 300;
+        font-display: swap;
+        src:
+          url("https://static.refly.ai/landing/AlibabaPuHuiTi-3-45-Light.woff2")
+            format("woff2"),
+          url("https://static.refly.ai/landing/AlibabaPuHuiTi-3-45-Light.ttf")
+            format("truetype");
+      }
+    </style>
+    <link
+      rel="preload"
+      href="https://static.refly.ai/landing/Alibaba-PuHuiTi-Bold.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous" />
+    <link
+      rel="preload"
+      href="https://static.refly.ai/landing/AlibabaPuHuiTi-3-45-Light.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous" />
+    <!-- Load configuration before the app -->
+    <script src="/config.js"></script>
+  </head>
+  <body class="font-inter">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

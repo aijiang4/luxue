@@ -1,0 +1,12 @@
+{
+  "watch": [
+    "src",
+    "../../packages/openapi-schema",
+    "../../packages/common-types",
+    "../../packages/skill-template",
+    "../../packages/utils"
+  ],
+  "ext": "ts",
+  "ignore": ["src/**/*.spec.ts"],
+  "exec": "ts-node -r tsconfig-paths/register src/main.ts"
+}

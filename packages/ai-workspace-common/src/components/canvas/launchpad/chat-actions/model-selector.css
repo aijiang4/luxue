@@ -1,0 +1,116 @@
+/* 确保模型选择器的下拉菜单显示在最上层 */
+:root .ant-dropdown {
+  z-index: 10000 !important;
+}
+
+/* 确保下拉菜单的内容也有高z-index */
+:root .ant-dropdown-menu {
+  z-index: 10000 !important;
+  border: none !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), 0 0 1px rgba(0, 0, 0, 0.1) !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  animation: dropdownFadeIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+  padding: 8px !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+/* 确保下拉菜单的容器也有高z-index */
+body > div.ant-dropdown-wrap,
+body > div.ant-dropdown {
+  z-index: 10000 !important;
+}
+
+/* 针对特定的模型选择器下拉菜单 */
+.model-selector-dropdown + div.ant-dropdown {
+  z-index: 10000 !important;
+}
+
+/* 全局样式覆盖 */
+div[class*="ant-dropdown"] {
+  z-index: 10000 !important;
+}
+
+/* 下拉菜单项样式 */
+.ant-dropdown-menu-item {
+  transition: all 0.3s ease !important;
+  padding: 10px 16px !important;
+  border-radius: 8px !important;
+  margin-bottom: 2px !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.ant-dropdown-menu-item::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  background: linear-gradient(135deg, rgba(210, 180, 140, 0.1), rgba(184, 134, 90, 0.1)) !important;
+  opacity: 0 !important;
+  transition: opacity 0.3s ease !important;
+  border-radius: 8px !important;
+}
+
+.ant-dropdown-menu-item:hover {
+  background-color: transparent !important;
+  transform: translateX(3px) !important;
+}
+
+.ant-dropdown-menu-item:hover::before {
+  opacity: 1 !important;
+}
+
+/* 下拉菜单动画 */
+@keyframes dropdownFadeIn {
+  from { opacity: 0; transform: translateY(-15px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* 模型选择器样式 */
+.model-selector-dropdown {
+  transition: all 0.3s ease !important;
+  border-radius: 20px !important;
+  padding: 6px 12px !important;
+  background: linear-gradient(135deg, rgba(255,255,255,0.8), rgba(255,255,255,0.4)) !important;
+  border: none !important;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.model-selector-dropdown::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  background: linear-gradient(135deg, rgba(210, 180, 140, 0.1), rgba(184, 134, 90, 0.1)) !important;
+  opacity: 0 !important;
+  transition: opacity 0.3s ease !important;
+  border-radius: 20px !important;
+}
+
+.model-selector-dropdown:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12) !important;
+}
+
+.model-selector-dropdown:hover::before {
+  opacity: 1 !important;
+}
+
+/* 模型图标动画 */
+.model-icon {
+  transition: all 0.4s ease !important;
+  color: #B8865A !important;
+}
+
+.model-selector-dropdown:hover .model-icon {
+  transform: rotate(180deg) scale(1.2) !important;
+  color: #D2B48C !important;
+} 

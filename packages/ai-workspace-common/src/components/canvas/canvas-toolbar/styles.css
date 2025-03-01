@@ -1,0 +1,109 @@
+/* 学校风格的工具栏样式 */
+.school-tool-button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.school-tool-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23432818' stroke-width='1' stroke-opacity='0.2'%3E%3Cpath d='M0,0 C40,33 66,52 90,66 C150,93 130,76 190,120 C250,164 300,185 400,220'/%3E%3Cpath d='M0,50 C40,83 66,102 90,116 C150,143 130,126 190,170 C250,214 300,235 400,270'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 100% 100%;
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.school-tool-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3) !important;
+}
+
+.school-tool-button:active {
+  transform: translateY(1px);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.4) !important;
+}
+
+.school-tool-button.active {
+  transform: translateY(1px);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.4) !important;
+}
+
+/* 工具栏容器样式 - 图书馆书架风格 */
+.school-toolbar-container {
+  position: relative;
+  background: linear-gradient(to right, #5D3A1A, #8B4513) !important;
+  border: 2px solid #432818 !important;
+  box-shadow: 5px 0 15px rgba(0,0,0,0.3) !important;
+}
+
+/* 书架纹理 */
+.school-toolbar-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23432818' stroke-width='1' stroke-opacity='0.2'%3E%3Cpath d='M0,0 C40,33 66,52 90,66 C150,93 130,76 190,120 C250,164 300,185 400,220'/%3E%3Cpath d='M0,50 C40,83 66,102 90,116 C150,143 130,126 190,170 C250,214 300,235 400,270'/%3E%3Cpath d='M0,100 C40,133 66,152 90,166 C150,193 130,176 190,220 C250,264 300,285 400,320'/%3E%3Cpath d='M0,150 C40,183 66,202 90,216 C150,243 130,226 190,270 C250,314 300,335 400,370'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 100% 100%;
+  opacity: 0.2;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 书架隔板 */
+.school-toolbar-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(to bottom, 
+      transparent 20%, #432818 20%, #432818 22%, 
+      transparent 22%, transparent 45%, #432818 45%, 
+      #432818 47%, transparent 47%, transparent 70%, 
+      #432818 70%, #432818 72%, transparent 72%);
+  opacity: 0.7;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 书架侧面 */
+.school-toolbar-container .ant-divider {
+  border-color: #432818 !important;
+  opacity: 0.7;
+  margin: 8px 0 !important;
+}
+
+/* 书架顶部和底部装饰 */
+.school-toolbar-container::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: #432818;
+  border-radius: 5px 5px 0 0;
+  z-index: -1;
+}
+
+.school-toolbar-container::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: #432818;
+  border-radius: 0 0 5px 5px;
+  z-index: -1;
+} 

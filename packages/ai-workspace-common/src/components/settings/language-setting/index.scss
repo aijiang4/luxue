@@ -1,0 +1,16 @@
+.language-setting {
+  padding: 0 24px;
+  box-sizing: border-box;
+  overflow: auto;
+  &-title {
+    font-size: 20px;
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+  &-content {
+    padding: 8px 12px;
+  }
+  &-content-item {
+    margin-bottom: 32px;
+  }
+}

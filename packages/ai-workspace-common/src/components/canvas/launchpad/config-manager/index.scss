@@ -1,0 +1,122 @@
+.config-manager {
+  padding: 12px 0 4px 0;
+  margin: 8px 12px 0;
+  border-top: 1px dashed rgba(0, 0, 0, 0.15);
+
+  &__items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    border-radius: 4px;
+    font-size: 10px;
+    color: rgba(0, 0, 0, 0.5);
+
+    &.config-item {
+      padding: 0 4px;
+      background: #f1f1f0;
+      border: 1px solid #f1f1f0;
+      cursor: pointer;
+
+      &.active {
+        border-color: #00968f;
+      }
+
+      &.error {
+        border-color: rgba(245, 63, 63, 0.3);
+        background-color: rgb(255, 236, 232);
+        color: #f00;
+      }
+
+      .content {
+        max-width: 180px;
+        margin-right: 4px;
+        color: rgba(0, 0, 0, 0.6);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+
+    &-icon {
+      margin-right: 4px;
+    }
+  }
+
+  &__input {
+    margin-top: 8px;
+    border: 1px solid #00968f;
+    border-radius: 8px;
+    font-size: 10px;
+    &.error {
+      border-color: rgb(245, 63, 63);
+    }
+
+    &-top {
+      padding: 5px 8px 7px 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #f1f1f0;
+
+      .arco-btn {
+        margin-left: 4px;
+        padding: 0 4px;
+        box-sizing: border-box;
+        font-size: 10px;
+        height: 18px;
+        border-radius: 4px;
+      }
+    }
+    &-content {
+      padding: 8px;
+
+      .arco-checkbox {
+        font-size: 10px;
+      }
+
+      .arco-checkbox-mask {
+        border-radius: 0 !important;
+        width: 12px;
+        height: 12px;
+      }
+
+      .arco-radio {
+        font-size: 10px;
+      }
+
+      .arco-radio-mask {
+        width: 12px;
+        height: 12px;
+        &::after {
+          width: 8px;
+          height: 8px;
+        }
+      }
+
+      input {
+        font-size: 10px;
+      }
+
+      textarea {
+        padding: 4px;
+        margin: 0 !important;
+        font-size: 10px;
+      }
+
+      .arco-form-message {
+        font-size: 10px;
+      }
+
+      .arco-form-item {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

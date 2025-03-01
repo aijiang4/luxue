@@ -1,0 +1,286 @@
+/* 基础样式 */
+body {
+  font-family: 'Heiti SC', 'SimHei', sans-serif;
+  color: #333;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+/* 导航栏 */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 5%;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.login-button {
+  background-color: #3A5FCD;
+  border-color: #3A5FCD;
+}
+
+/* 英雄区域 */
+.hero {
+  text-align: center;
+  padding: 5rem 1rem;
+  background: linear-gradient(135deg, #3A5FCD 0%, #2E8B57 100%);
+  color: white;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-button {
+  background-color: #FF8C00;
+  border-color: #FF8C00;
+  padding: 0.5rem 2rem;
+  font-size: 1.1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+  background-color: #E67E00;
+  border-color: #E67E00;
+}
+
+/* 功能展示区域 */
+.feature {
+  display: flex;
+  align-items: center;
+  padding: 4rem 5%;
+  background-color: white;
+}
+
+.feature.reversed {
+  flex-direction: row-reverse;
+}
+
+.feature:nth-child(even) {
+  background-color: #F5F5F5;
+}
+
+.feature-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.feature-img {
+  max-width: 90%;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.feature-img:hover {
+  transform: scale(1.02);
+}
+
+.feature-text {
+  flex: 1;
+  padding: 0 2rem;
+}
+
+.feature-text h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #3A5FCD;
+}
+
+.feature-text p {
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  color: #555;
+}
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+}
+
+.feature-list li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.check-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background-color: #2E8B57;
+  color: white;
+  border-radius: 50%;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+/* 号召行动区域 */
+.cta-section {
+  text-align: center;
+  padding: 5rem 1rem;
+  background: linear-gradient(135deg, #2E8B57 0%, #3A5FCD 100%);
+  color: white;
+}
+
+.cta-section h2 {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+}
+
+.cta-section p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 页脚 */
+.footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  background-color: #333;
+  color: white;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .feature {
+    flex-direction: column;
+    padding: 3rem 5%;
+  }
+  
+  .feature.reversed {
+    flex-direction: column;
+  }
+  
+  .feature-image, .feature-text {
+    width: 100%;
+    padding: 0;
+  }
+  
+  .feature-image {
+    margin-bottom: 2rem;
+  }
+  
+  .hero h1 {
+    font-size: 2rem;
+  }
+  
+  .feature-text h2 {
+    font-size: 1.8rem;
+  }
+}
+
+/* 保留原有的一些样式以兼容其他组件 */
+.landing-modal {
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+  padding: 0;
+  box-sizing: border-box;
+  border-radius: 0 !important;
+
+  .arco-modal-content {
+    height: 100vh;
+  }
+
+  .landing-modal-login {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      img {
+        width: 32px;
+        height: 32px;
+      }
+
+      span {
+        font-size: 20px;
+        font-weight: 700;
+      }
+    }
+
+    .login-btn {
+      width: 120px;
+    }
+  }
+}
+
+.span-wrap-styles {
+  display: inline-block;
+  vertical-align: top;
+  text-decoration: inherit;
+  text-wrap: nowrap;
+  font-family: inherit;
+}
+
+.shadow-heroImageInner,
+.shadow-lg {
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.shadow-lg {
+  --tw-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color),
+    0 4px 6px -4px var(--tw-shadow-color);
+}
+
+.bg-elementGray {
+  --tw-bg-opacity: 1;
+  background-color: rgb(236 236 236 / var(--tw-bg-opacity));
+}
+
+.bg-elementGray2 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(244 244 244 / var(--tw-bg-opacity));
+}
+
+.feature-header-highlight {
+  display: inline-block;
+  background-color: #000;
+  margin: 0 -1rem;
+  padding: 0 1rem;
+  border-radius: 999px;
+  position: relative;
+  z-index: 1;
+}

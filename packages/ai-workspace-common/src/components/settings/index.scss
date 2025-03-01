@@ -1,0 +1,17 @@
+.settings-modal {
+  .ant-modal-content {
+    padding-left: 0;
+    padding-bottom: 0;
+
+    .ant-modal-body {
+      height: 520px;
+      overflow: auto;
+      .ant-tabs {
+        height: 100%;
+        .ant-tabs-tab {
+          margin: 0;
+        }
+      }
+    }
+  }
+}

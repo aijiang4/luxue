@@ -1,0 +1,17 @@
+.library-modal {
+  .ant-modal-content {
+    .ant-modal-body {
+      position: relative;
+      height: 50vh;
+      overflow: hidden;
+      box-sizing: border-box;
+      .ant-tabs {
+        width: 100%;
+      }
+    }
+  }
+
+  .ant-card .ant-card-actions > li {
+    margin: 4px 0;
+  }
+}

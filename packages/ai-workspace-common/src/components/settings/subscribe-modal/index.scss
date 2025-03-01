@@ -1,0 +1,224 @@
+.subscribe-modal {
+  .ant-modal-content {
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    .ant-modal-body {
+      width: 100%;
+      padding: 24px 0;
+      max-height: 100vh;
+      overflow-y: auto;
+    }
+  }
+}
+
+.subscribe-content {
+  &-title {
+    font-size: 30px;
+    line-height: 38px;
+    color: #000;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  &-subtitle {
+    margin-top: 8px;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgb(242 103 37);
+    font-weight: 600;
+    text-align: center;
+  }
+
+  &-type {
+    margin-top: 8px;
+    display: flex;
+    justify-content: center;
+
+    &-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 40px;
+      padding: 4px;
+      box-sizing: border-box;
+      border-radius: 8px;
+      background: #f5f5f5;
+      border: 1px solid #e5e5e5;
+
+      &-item {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 120px;
+        height: 100%;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        line-height: 24px;
+        color: #000;
+        &.active {
+          color: #fff;
+          background: #00968f;
+        }
+      }
+    }
+  }
+
+  &-plans {
+    margin-top: 20px;
+    padding: 12px;
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    border-radius: 12px;
+
+    .pro-plan {
+      padding: 0 2px 2px 2px;
+      border-radius: 12px;
+      background: rgba(0, 150, 143, 0.8);
+    }
+
+    &-item {
+      flex: 1;
+      border-radius: 12px;
+      padding: 28px;
+      box-sizing: border-box;
+      border: 1px solid transparent;
+
+      &-title {
+        font-size: 18px;
+        line-height: 32px;
+        color: #000;
+        font-weight: 600;
+      }
+
+      &.item-free {
+        &:hover {
+          box-shadow: #e5e5e5 0px 0px 0px 2px;
+        }
+      }
+
+      &.item-plus {
+        &:hover {
+          box-shadow: rgb(0, 134, 201) 0px 0px 0px 2px;
+        }
+        .subscribe-content-plans-item-title {
+          color: #016aa2;
+        }
+      }
+
+      &.item-pro {
+        .subscribe-content-plans-item-title {
+          color: #00968f;
+        }
+      }
+
+      &.item-max {
+        &:hover {
+          box-shadow: rgb(232, 178, 102) 0px 0px 0px 2px;
+        }
+        .subscribe-content-plans-item-title {
+          color: #f26725;
+        }
+      }
+
+      &-price {
+        font-size: 36px;
+        line-height: 50px;
+        color: #000;
+        font-weight: 800;
+        height: 48px;
+        margin-top: 12px;
+        .period {
+          color: #2c2929;
+          font-size: 14px;
+          line-height: 24px;
+        }
+      }
+
+      .description {
+        height: 36px;
+        font-size: 14px;
+        line-height: 18px;
+        color: rgb(107 114 128);
+      }
+
+      .subscribe-btn {
+        margin: 20px 0;
+        height: 40px;
+        width: 100%;
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 600;
+        background: transparent;
+        padding: 0 12px !important;
+
+        &--free {
+          background: transparent;
+        }
+
+        &--plus {
+          border: 1px solid #016aa2;
+          &.ant-btn-default {
+            &:hover {
+              background: linear-gradient(to right, #068cd4, #016aa2);
+              color: #fff;
+              border-color: #068cd4;
+            }
+          }
+        }
+
+        &--pro {
+          background: linear-gradient(to right, #00a49c, #02857f);
+          color: #fff;
+          border-color: #00968f;
+          &.ant-btn-default {
+            &:hover {
+              background: linear-gradient(to right, #00b7ae, #009d95);
+              color: #fff;
+              border-color: #068cd4;
+            }
+          }
+        }
+
+        &--max {
+          border: 1px solid #f26725;
+          &.ant-btn-default {
+            &:hover {
+              background: linear-gradient(to right, #f7a985, #d34b0c);
+              color: #fff;
+              border-color: #f7a985;
+            }
+          }
+        }
+      }
+
+      .plane-features {
+        &-item {
+          margin-bottom: 8px;
+          font-size: 12px;
+          font-weight: 500;
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+
+  &-description {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    line-height: 24px;
+    color: rgb(107 114 128);
+  }
+}

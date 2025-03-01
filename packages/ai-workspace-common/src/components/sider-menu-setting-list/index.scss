@@ -1,0 +1,41 @@
+.sider-menu-setting-list-drop-list {
+  min-width: 220px;
+  max-width: 440px;
+  padding: 8px 20px;
+  box-sizing: border-box;
+  .sider-menu-setting-list-menu {
+    .arco-menu-item {
+      border: 1px solid transparent;
+      line-height: 2;
+      font-size: 15px;
+    }
+  }
+
+  .sider-menu-setting-list-drop-list-content {
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 0 8px;
+    .profile {
+      padding: 13px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      .avatar {
+        flex-shrink: 0;
+      }
+      .username {
+        .nickname {
+          font-size: 16px;
+          font-weight: 600;
+          color: #000;
+        }
+        .email {
+          font-size: 12px;
+          color: #999;
+        }
+      }
+    }
+  }
+}

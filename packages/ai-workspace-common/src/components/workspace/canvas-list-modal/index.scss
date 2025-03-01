@@ -1,0 +1,9 @@
+.canvas-list {
+  .ant-modal-content {
+    .ant-modal-body {
+      max-height: 50vh;
+      min-height: 50vh;
+      overflow: auto;
+    }
+  }
+}

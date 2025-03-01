@@ -1,0 +1,127 @@
+/* 青春活力风格的ChatActions样式 */
+.action-button {
+  transition: all 0.3s ease !important;
+  border-radius: 50% !important;
+  width: 32px !important;
+  height: 32px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.5)) !important;
+  border: none !important;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1) !important;
+  overflow: hidden !important;
+  position: relative !important;
+  z-index: 101 !important;
+}
+
+.action-button::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  background: linear-gradient(135deg, rgba(210, 180, 140, 0.2), rgba(184, 134, 90, 0.2)) !important;
+  opacity: 0 !important;
+  transition: opacity 0.3s ease !important;
+  border-radius: 50% !important;
+}
+
+.action-button:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+.action-button:hover::before {
+  opacity: 1 !important;
+}
+
+.action-button:active {
+  transform: translateY(0) !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+.send-button {
+  position: relative !important;
+  overflow: hidden !important;
+  background: linear-gradient(90deg, #B8865A, #D2B48C) !important;
+  border: none !important;
+  border-radius: 20px !important;
+  padding: 0 16px !important;
+  height: 32px !important;
+  box-shadow: 0 4px 10px rgba(184, 134, 90, 0.3) !important;
+  transition: all 0.3s ease !important;
+}
+
+.send-button:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 6px 15px rgba(184, 134, 90, 0.4) !important;
+  background: linear-gradient(90deg, #D2B48C, #B8865A) !important;
+}
+
+.send-button:active {
+  transform: translateY(0) !important;
+  box-shadow: 0 2px 5px rgba(255, 107, 107, 0.3) !important;
+}
+
+.send-button-effect {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%) !important;
+  background-size: 200% 200% !important;
+  background-position: center !important;
+  opacity: 0 !important;
+  transition: opacity 0.3s ease !important;
+}
+
+.send-button:hover .send-button-effect {
+  opacity: 1 !important;
+  animation: pulse-light 2s infinite !important;
+}
+
+@keyframes pulse-light {
+  0% { opacity: 0.3; transform: scale(0.95); }
+  50% { opacity: 0.6; transform: scale(1.05); }
+  100% { opacity: 0.3; transform: scale(0.95); }
+}
+
+/* 铅笔动画效果 */
+@keyframes pencilMove {
+  0% { transform: rotate(-2deg) translateX(-1px); }
+  50% { transform: rotate(2deg) translateX(1px); }
+  100% { transform: rotate(-2deg) translateX(-1px); }
+}
+
+.pencil-icon {
+  animation: pencilMove 3s ease-in-out infinite;
+  transform-origin: center bottom;
+}
+
+/* 波浪动画效果 */
+@keyframes wave {
+  0% { transform: translateX(0) scaleY(1); }
+  50% { transform: translateX(-15px) scaleY(1.2); }
+  100% { transform: translateX(0) scaleY(1); }
+}
+
+.wave-decoration {
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 5px !important;
+  background: linear-gradient(90deg, 
+    rgba(210, 180, 140, 0.3) 0%, 
+    rgba(184, 134, 90, 0.5) 25%, 
+    rgba(210, 180, 140, 0.3) 50%, 
+    rgba(184, 134, 90, 0.5) 75%, 
+    rgba(210, 180, 140, 0.3) 100%) !important;
+  background-size: 200% 100% !important;
+  animation: wave 8s linear infinite !important;
+  border-radius: 0 0 16px 16px !important;
+} 
