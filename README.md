@@ -1,53 +1,79 @@
-# Luxue
+git clone git@github.com:<github_username>/refly.git
+3.验证依赖项
+Refly 需要以下依赖项来构建：
 
-基于 Refly 的本地部署版本，提供强大的 AI 协作和知识管理功能。
+Docker
+Docker 组成
+Node.js v20.x (LTS)
+4.安装
+Refly 由多个以 monorepo 结构管理的包组成。主要组件包括：
 
-## 功能特点
+Web 应用程序（apps/web/）：主 Web 界面
+API 服务器（apps/api/）：后端服务器
+AI 工作区通用（packages/ai-workspace-common/）：共享 AI 工作区 UI 组件
+i18n（packages/i18n/）：国际化支持
+请按照以下步骤进行安装：
 
-- AI 辅助创作和编辑
-- 知识库管理
-- 实时协作
-- 多模型支持
-- 本地部署，数据安全
+启动所有中间件：
+cd deploy/docker
+docker-compose -f docker-compose.middleware.yml up -d
+安装依赖项：
+corepack enable
+pnpm install
+为 API 和 Web 设置环境变量：
+cp apps/web/.env.example apps/web/.env
+cp apps/api/.env.example apps/api/.env
+开始开发：
+pnpm build
+pnpm dev
+您可以访问http://localhost:5173开始开发 Refly。
 
-## 快速开始
+发展
+为了帮助您快速找到适合您的贡献，这里简要概述了 Refly 的结构：
 
-### 前提条件
+后端结构
+[apps/server/]             // Main server application
+├── src/
+│   ├── controllers/      // API route handlers
+│   ├── services/        // Business logic implementation
+│   ├── models/          // Data models and types
+│   ├── ai/              // AI feature implementations
+│   │   ├── llm/        // LLM integration and management
+│   │   ├── rag/        // RAG pipeline implementation
+│   │   └── memory/     // Context memory management
+│   ├── canvas/         // Canvas-related backend services
+│   └── utils/          // Shared utilities
 
-- Node.js v20.x (LTS)
-- Docker 和 Docker Compose
-- pnpm 8.15.8 或更高版本
+[packages/]
+├── ai-core/            // Core AI functionality
+│   ├── src/
+│   │   ├── llm/       // LLM abstraction and implementations
+│   │   ├── memory/    // Memory systems
+│   │   └── rag/       // RAG implementations
+│
+└── shared/            // Shared types and utilities
+    └── src/
+        └── types/     // Common TypeScript types
+后端采用 Nest.js 和 TypeScript 构建，重点关注：
 
-### 安装步骤
+AI 功能实现，包括 LLM 集成、RAG 管道和上下文内存
+画布状态管理和实时协作
+用于实时功能的 RESTful API 和 WebSocket 连接
+知识库的高效数据存储和检索
+前端结构
+[apps/web/]                 // Main web application
+├── src/
+│   ├── components/         // React components
+│   ├── styles/            // Global styles and themes
+│   └── main.tsx           // Application entry point
 
-1. 克隆仓库
-   ```bash
-   git clone https://github.com/aijiang4/luxue.git
-   cd luxue
-   ```
-
-2. 启动中间件服务
-   ```bash
-   cd deploy/docker
-   docker-compose -f docker-compose.middleware.yml up -d
-   ```
-
-3. 安装依赖
-   ```bash
-   pnpm install
-   ```
-
-4. 设置环境变量
-   ```bash
-   cp apps/web/.env.example apps/web/.env
-   cp apps/api/.env.example apps/api/.env
-   ```
-   
-5. 启动开发服务器
-   ```bash
-   pnpm dev
-   ```
-
-## 许可证
-
-MIT
+[packages/]
+├── ai-workspace-common/   // Shared AI workspace components
+│   ├── src/
+│   │   ├── components/    // Canvas, editor, and AI feature components
+│   │   └── utils/        // Shared utilities
+│
+└── i18n/                 // Internationalization
+    ├── src/
+    │   ├── en-US/        // English translations
+    │   └── zh-Hans/      // Chinese translations
