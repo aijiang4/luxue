@@ -1,37 +1,39 @@
+Clone the forked repository from your terminal:
+
 git clone git@github.com:<github_username>/refly.git
-3.验证依赖项
-Refly 需要以下依赖项来构建：
+3. Verify dependencies
+Refly requires the following dependencies to build:
 
 Docker
-Docker 组成
+Docker Compose
 Node.js v20.x (LTS)
-4.安装
-Refly 由多个以 monorepo 结构管理的包组成。主要组件包括：
+4. Installation
+Refly consists of multiple packages managed in a monorepo structure. The main components are:
 
-Web 应用程序（apps/web/）：主 Web 界面
-API 服务器（apps/api/）：后端服务器
-AI 工作区通用（packages/ai-workspace-common/）：共享 AI 工作区 UI 组件
-i18n（packages/i18n/）：国际化支持
-请按照以下步骤进行安装：
+Web Application (apps/web/): The main web interface
+API Server (apps/api/): The backend server
+AI Workspace Common (packages/ai-workspace-common/): Shared AI workspace UI components
+i18n (packages/i18n/): Internationalization support
+Follow these steps to install:
 
-启动所有中间件：
+Spin up all the middlewares:
 cd deploy/docker
 docker-compose -f docker-compose.middleware.yml up -d
-安装依赖项：
+Install dependencies:
 corepack enable
 pnpm install
-为 API 和 Web 设置环境变量：
+Set up environment variables for both API and web:
 cp apps/web/.env.example apps/web/.env
 cp apps/api/.env.example apps/api/.env
-开始开发：
+Start developing:
 pnpm build
 pnpm dev
-您可以访问http://localhost:5173开始开发 Refly。
+You can visit http://localhost:5173 to start developing Refly.
 
-发展
-为了帮助您快速找到适合您的贡献，这里简要概述了 Refly 的结构：
+Developing
+To help you quickly navigate where your contribution fits, here's a brief outline of Refly's structure:
 
-后端结构
+Backend Structure
 [apps/server/]             // Main server application
 ├── src/
 │   ├── controllers/      // API route handlers
@@ -54,13 +56,13 @@ pnpm dev
 └── shared/            // Shared types and utilities
     └── src/
         └── types/     // Common TypeScript types
-后端采用 Nest.js 和 TypeScript 构建，重点关注：
+The backend is built with Nest.js and TypeScript, focusing on:
 
-AI 功能实现，包括 LLM 集成、RAG 管道和上下文内存
-画布状态管理和实时协作
-用于实时功能的 RESTful API 和 WebSocket 连接
-知识库的高效数据存储和检索
-前端结构
+AI feature implementation including LLM integration, RAG pipelines, and context memory
+Canvas state management and real-time collaboration
+RESTful APIs and WebSocket connections for real-time features
+Efficient data storage and retrieval for knowledge bases
+Frontend Structure
 [apps/web/]                 // Main web application
 ├── src/
 │   ├── components/         // React components
