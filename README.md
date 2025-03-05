@@ -1,12 +1,15 @@
+1. Fork this repository
+2. Clone the repo
 Clone the forked repository from your terminal:
-
 git clone git@github.com:<github_username>/refly.git
+
 3. Verify dependencies
 Refly requires the following dependencies to build:
 
 Docker
 Docker Compose
 Node.js v20.x (LTS)
+
 4. Installation
 Refly consists of multiple packages managed in a monorepo structure. The main components are:
 
