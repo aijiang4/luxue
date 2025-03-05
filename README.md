@@ -1,7 +1,7 @@
 1. Fork this repository
 2. Clone the repo
 Clone the forked repository from your terminal:
-git clone git@github.com:<github_username>/refly.git
+git clone https://github.com/aijiang4/luxue.git
 
 3. Verify dependencies
 Refly requires the following dependencies to build:
